@@ -1,0 +1,36 @@
+.table-box {
+  max-height: 500px;
+  overflow: overlay;
+  max-width: 1150px;
+  position: relative;
+}
+.table-box::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
+.table-box::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 6px;
+}
+tr {
+  border-bottom: 1px solid #ccc;
+}
+tr th:first-child {
+  width: 40px;
+  text-align: center;
+}
+tr th {
+  text-align: start;
+  font-weight: 500;
+  padding-bottom: 12px;
+}
+tr td:first-child {
+  text-align: center;
+}
+tr td {
+  padding: 16px 0;
+}
+.action button {
+  padding: 6px 12px;
+  border-radius: 8px;
+}

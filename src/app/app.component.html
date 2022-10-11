@@ -1,5 +1,14 @@
 <!-- App component -->
-<div class="w-full h-screen">
-  <HeaderComponent></HeaderComponent>
-  <app-table></app-table>
+<div class="relative">
+  <div class="w-full bg-[#e3f2fd] h-screen fixed">
+    <div class="max-w-[1150px] w-full flex m-auto pt-[60px] pb-[20px]">
+      <HeaderComponent></HeaderComponent>
+    </div>
+    <div class="absolute w-full h-screen top-0 z-[2]">
+      <ModalComponent></ModalComponent>
+    </div>
+    <div class="max-w-[1150px] w-full m-auto">
+      <TableComponent></TableComponent>
+    </div>
+  </div>
 </div>

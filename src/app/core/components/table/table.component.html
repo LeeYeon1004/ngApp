@@ -1,0 +1,49 @@
+<div class="table-box">
+  <table class="w-full text-[13px] relative">
+    <thead class="text-[ffffff80] sticky top-0 bg-[#eaf2fd]">
+      <tr class="">
+        <th class=""><fa-icon [icon]="faAnglesUp"></fa-icon></th>
+        <th class="pl-[12px]">SONG</th>
+        <th class="pl-[12px]">ALBUM</th>
+        <th class="pl-[12px]">DATE</th>
+        <th class="pl-[12px]">TIME</th>
+        <th class="pl-[12px]">ACTION</th>
+      </tr>
+    </thead>
+    <tbody class="">
+      <tr *ngFor="let item of items; let i = index" class="">
+        <td class="">
+          <div>{{ i + 1 }}</div>
+        </td>
+        <td class="">
+          <div class="pl-[12px]">
+            <img class="" src="" alt="" />
+            <div class="">
+              <p class="">{{ item.song }}</p>
+            </div>
+            <div class="">
+              <i class="fa-solid fa-circle-play"></i>
+            </div>
+          </div>
+        </td>
+        <td class="">
+          <div class="pl-[12px]">
+            <p class="">{{ item.album }}</p>
+          </div>
+        </td>
+        <td>
+          <div class="pl-[12px]">{{ item.date }}</div>
+        </td>
+        <td>
+          <div class="pl-[12px]">{{ item.time }}</div>
+        </td>
+        <td class="action">
+          <div>
+            <button class="mr-[8px] bg-[#0d6efd] text-[#fff]">Edit</button>
+            <button class="bg-[#dc3c45] text-[#fff]">Remove</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
