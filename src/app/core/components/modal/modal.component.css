@@ -1,16 +1,82 @@
-.modal {
+@keyframes unfoldIn {
+  0% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+  100% {
+    transform: scaleY(1) scaleX(1);
+  }
+}
+@keyframes unfoldOut {
+  0% {
+    transform: scaleY(1) scaleX(1);
+  }
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+  100% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+}
+@keyframes zoomIn {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+.modal-box {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
+  transform: scaleY(0.01) scaleX(0);
+  animation: unfoldIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
-.modal input {
+.modal {
+  transform: scale(0);
+  animation: zoomIn 0.3s 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal-box.out {
+  transform: scale(1);
+  animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal.out {
+  animation: zoomOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+.modal-box input {
   outline: none;
   border-radius: 4px;
   padding: 8px 12px;
   border: 1px solid #ccc;
+  flex: 1;
 }
-.modal input:focus-within {
+.modal-box input:focus-within {
   border: 1px solid #0b5ed7;
+}
+.btn {
+  justify-content: end;
+}
+.cancel-btn {
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  padding: 6px 12px;
+  margin-right: 12px;
+  border-radius: 4px;
+}
+.cancel-btn:active {
+  background-color: rgba(26, 27, 32, 0.06);
 }

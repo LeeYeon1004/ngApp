@@ -1,6 +1,6 @@
-export class ItemsTable {
-  song: string | undefined;
-  album: string | undefined;
-  date: string | undefined;
-  time: string | undefined;
+export interface ItemsTable {
+  song: string;
+  album: string;
+  date: string;
+  time: string;
 }

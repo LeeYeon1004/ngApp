@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'ModalComponent',
@@ -8,5 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class ModalComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('hello');
+  }
+
+  @Output() isShow = true;
+  handleHide() {
+    this.isShow = false;
+  }
 }

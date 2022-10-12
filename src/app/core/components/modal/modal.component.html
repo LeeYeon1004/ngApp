@@ -1,5 +1,11 @@
-<div class="modal">
-  <div class="max-w-[500px] bg-white p-[16px] rounded-[8px]">
+<div
+  class="modal-box absolute w-full h-screen top-0 z-[2]"
+  [class.out]="!isShow"
+>
+  <div
+    class="modal max-w-[500px] bg-white px-[28px] pt-[28px] pb-[20px] rounded-[8px]"
+    [class.out]="!isShow"
+  >
     <div class="flex items-center mb-[8px]">
       <h3 class="leading-[1.5] tracking-[0.00938em] w-[60px]">Song</h3>
       <input type="text" name="" id="" />
@@ -10,11 +16,20 @@
     </div>
     <div class="flex items-center mb-[8px]">
       <h3 class="leading-[1.5] tracking-[0.00938em] w-[60px]">Date</h3>
-      <input type="text" name="" id="" />
+      <input type="date" name="" id="" />
     </div>
     <div class="flex items-center mb-[8px]">
       <h3 class="leading-[1.5] tracking-[0.00938em] w-[60px]">Time</h3>
       <input type="text" name="" id="" />
+    </div>
+    <div class="btn flex mt-[20px]">
+      <button (click)="handleHide()" class="cancel-btn">CANCEL</button>
+      <button
+        type="submit"
+        class="bg-[#0d6efd] text-[#fff] py-[6px] px-[16px] rounded-[4px] hover:bg-[#4688eb] active:bg-[#2677f0]"
+      >
+        ADD
+      </button>
     </div>
   </div>
 </div>
