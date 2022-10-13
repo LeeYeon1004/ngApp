@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { faAnglesUp } from '@fortawesome/free-solid-svg-icons';
 import { ItemsTable } from '../../model/table.interface';
 import { items } from '../../config-api/table.config';
@@ -12,8 +12,6 @@ export class TableComponent implements OnInit {
   faAnglesUp = faAnglesUp;
   items: ItemsTable[] = items;
   currentItem = items[0];
-
-  @Input() item: ItemsTable | undefined;
 
   handleSelect(i: number) {
     console.log(i);

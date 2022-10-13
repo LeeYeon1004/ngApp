@@ -44,17 +44,17 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   transform: scaleY(0.01) scaleX(0);
-  animation: unfoldIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  animation: unfoldIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 .modal {
   transform: scale(0);
-  animation: zoomIn 0.3s 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  animation: zoomIn 0.3s 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 .modal-box.out {
   transform: scale(1);
-  animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  animation: unfoldOut 0.5s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
-.modal.out {
+.out .modal {
   animation: zoomOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 .modal-box input {

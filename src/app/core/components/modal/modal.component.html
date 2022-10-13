@@ -1,10 +1,10 @@
 <div
-  class="modal-box absolute w-full h-screen top-0 z-[2]"
-  [class.out]="!isShow"
+  class="{{ isShow ? 'modal-box' : 'hidden' }} {{
+    isClose && 'out'
+  }} absolute w-full h-screen top-0 z-[2]"
 >
   <div
     class="modal max-w-[500px] bg-white px-[28px] pt-[28px] pb-[20px] rounded-[8px]"
-    [class.out]="!isShow"
   >
     <div class="flex items-center mb-[8px]">
       <h3 class="leading-[1.5] tracking-[0.00938em] w-[60px]">Song</h3>
