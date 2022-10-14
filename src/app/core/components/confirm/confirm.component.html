@@ -1,0 +1,25 @@
+<div
+  class="{{ isShowConfirm ? 'flex' : 'hidden' }} {{
+    isHiddenConfirm ? 'out' : ''
+  }} modal-box absolute w-full h-screen top-0 z-[1]"
+>
+  <div
+    class="modal max-w-[500px] bg-white px-[28px] pt-[28px] pb-[20px] rounded-[8px]"
+  >
+    <div class="flex items-center mb-[8px]">
+      <fa-icon class="text-[#d29922]" [icon]="faTriangleExclamation"></fa-icon>
+      <h2 class="ml-[8px]">
+        Warning: This action cannot be undone. Are you sure ?
+      </h2>
+    </div>
+    <div class="btn flex mt-[20px]">
+      <button (click)="handleHide()" class="cancel-btn">Cancel</button>
+      <button
+        type="submit"
+        class="bg-[#0d6efd] text-[#fff] py-[6px] px-[16px] rounded-[4px] hover:bg-[#4688eb] active:bg-[#2677f0]"
+      >
+        Accept
+      </button>
+    </div>
+  </div>
+</div>

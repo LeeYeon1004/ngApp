@@ -11,9 +11,9 @@
       </tr>
     </thead>
     <tbody class="">
-      <tr *ngFor="let item of items; let i = index" class="">
+      <tr *ngFor="let item of newItems; let index = index" class="">
         <td class="">
-          <div>{{ i + 1 }}</div>
+          <div>{{ index + 1 }}</div>
         </td>
         <td class="">
           <div class="pl-[12px]">
@@ -40,7 +40,10 @@
         <td class="action">
           <div>
             <button class="mr-[8px] bg-[#0d6efd] text-[#fff]">Edit</button>
-            <button class="bg-[#dc3c45] text-[#fff]" (click)="handleSelect(i)">
+            <button
+              class="bg-[#dc3c45] text-[#fff]"
+              (click)="handleSendId(item.id); handleShow()"
+            >
               Remove
             </button>
           </div>

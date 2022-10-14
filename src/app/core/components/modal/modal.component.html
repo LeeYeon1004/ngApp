@@ -1,7 +1,7 @@
 <div
-  class="{{ isShow ? 'modal-box' : 'hidden' }} {{
-    isClose && 'out'
-  }} absolute w-full h-screen top-0 z-[2]"
+  class="{{ isShowModal ? 'flex' : 'hidden' }} {{
+    isHidden ? 'out' : ''
+  }} modal-box absolute w-full h-screen top-0 z-[2]"
 >
   <div
     class="modal max-w-[500px] bg-white px-[28px] pt-[28px] pb-[20px] rounded-[8px]"

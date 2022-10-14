@@ -2,16 +2,34 @@
   <div class="w-full bg-[#e3f2fd] h-screen fixed">
     <div class="max-w-[1150px] w-full flex m-auto pt-[60px] pb-[20px]">
       <HeaderComponent
-        [isShow]="isShow"
+        [isShowModal]="isShowModal"
         (checkShow)="checkShowed($event)"
+        [isHidden]="isHidden"
+        (checkHidden)="checkHidden($event)"
       ></HeaderComponent>
     </div>
     <ModalComponent
-      [isShow]="isShow"
+      [isShowModal]="isShowModal"
       (checkShow)="checkShowed($event)"
+      [isHidden]="isHidden"
+      (checkHidden)="checkHidden($event)"
     ></ModalComponent>
+    <ConfirmModal
+      [isShowConfirm]="isShowConfirm"
+      (checkConfirm)="checkConfirm($event)"
+      [isHiddenConfirm]="isHiddenConfirm"
+      (checkHiddenConfirm)="checkHiddenConfirm($event)"
+      [handleRemove]="handleRemove"
+    ></ConfirmModal>
     <div class="max-w-[1150px] w-full m-auto">
-      <TableComponent></TableComponent>
+      <TableComponent
+        [isShowConfirm]="isShowConfirm"
+        (checkConfirm)="checkConfirm($event)"
+        [isHiddenConfirm]="isHiddenConfirm"
+        (checkHiddenConfirm)="checkHiddenConfirm($event)"
+        [newItems]="newItems"
+        (sendId)="handleRemove($event)"
+      ></TableComponent>
     </div>
   </div>
 </div>

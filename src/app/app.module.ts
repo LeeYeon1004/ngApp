@@ -7,9 +7,10 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalComponent } from './core/components/modal/modal.component';
 import { HomeComponent } from './core/page/home/home.component';
+import { ConfirmComponent } from './core/components/confirm/confirm.component';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, HeaderComponent, ModalComponent, HomeComponent],
+  declarations: [AppComponent, TableComponent, HeaderComponent, ModalComponent, HomeComponent, ConfirmComponent],
   imports: [BrowserModule, FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent],
