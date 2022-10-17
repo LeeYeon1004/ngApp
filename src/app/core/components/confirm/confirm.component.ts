@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { items } from '../../config-api/table.config';
+import { ItemsTable } from '../../model/table.interface';
 
 @Component({
   selector: 'ConfirmModal',
@@ -8,13 +10,20 @@ import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 })
 export class ConfirmComponent implements OnInit {
   constructor() {}
+  newItems: ItemsTable[] = items;
+  @Input() idItem: number | undefined;
 
   faTriangleExclamation = faTriangleExclamation;
   @Input() isShowConfirm: boolean | undefined;
   @Input() isHiddenConfirm: boolean | undefined;
   @Output() checkConfirm = new EventEmitter<boolean>();
   @Output() checkHiddenConfirm = new EventEmitter<boolean>();
-  @Input() handleRemove(i: number) {}
+  @Output() sendData = new EventEmitter<ItemsTable[]>();
+
+  handleRemove() {
+    this.newItems = this.newItems.filter((item) => item.id !== this.idItem);
+    this.sendData.emit(this.newItems);
+  }
   handleHide() {
     this.isShowConfirm = false;
     this.checkConfirm.emit(this.isShowConfirm);

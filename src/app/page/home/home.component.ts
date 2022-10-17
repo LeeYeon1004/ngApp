@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { items } from '../../config-api/table.config';
-import { ItemsTable } from '../../model/table.interface';
+import { items } from '../../core/config-api/table.config';
+import { ItemsTable } from '../../core/model/table.interface';
 
 @Component({
   selector: 'app-home',
@@ -9,14 +9,25 @@ import { ItemsTable } from '../../model/table.interface';
 })
 export class HomeComponent implements OnInit, OnChanges {
   constructor() {}
-
-  items: ItemsTable[] = items;
   newItems: ItemsTable[] = items;
   idItem: number | undefined;
+  valueSearch: string = '';
+  clickOut: HTMLDivElement | undefined;
 
-  handleRemove($event: number) {
-    // this.newItems = this.newItems.filter((item) => item.id !== $event);
+  handleGetId($event: number) {
     this.idItem = $event;
+  }
+  handleGetData($event: ItemsTable[]) {
+    this.newItems = $event;
+  }
+  handleGetValue($event: string) {
+    this.valueSearch = $event;
+    this.newItems = this.newItems.filter((item) =>
+      item.song.toLowerCase().includes(this.valueSearch.toLowerCase())
+    );
+  }
+  handleGetElementOut($event: HTMLDivElement) {
+    this.clickOut = $event;
   }
 
   isShowModal: boolean = false;

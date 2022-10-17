@@ -5,26 +5,30 @@
 >
   <div
     class="modal max-w-[500px] bg-white px-[28px] pt-[28px] pb-[20px] rounded-[8px]"
+    #boxModal
   >
     <div class="flex items-center mb-[8px]">
-      <h3 class="leading-[1.5] tracking-[0.00938em] w-[60px]">Song</h3>
-      <input type="text" name="" id="" />
+      <h3 #song class="leading-[1.5] tracking-[0.00938em] w-[60px]">Song</h3>
+      <input #inputRef type="text" />
     </div>
     <div class="flex items-center mb-[8px]">
-      <h3 class="leading-[1.5] tracking-[0.00938em] w-[60px]">Album</h3>
-      <input type="text" name="" id="" />
+      <h3 #album class="leading-[1.5] tracking-[0.00938em] w-[60px]">Album</h3>
+      <input #inputAlbum type="text" />
     </div>
     <div class="flex items-center mb-[8px]">
-      <h3 class="leading-[1.5] tracking-[0.00938em] w-[60px]">Date</h3>
-      <input type="date" name="" id="" />
+      <h3 #date class="leading-[1.5] tracking-[0.00938em] w-[60px]">Date</h3>
+      <input #inputDate type="date" />
     </div>
     <div class="flex items-center mb-[8px]">
-      <h3 class="leading-[1.5] tracking-[0.00938em] w-[60px]">Time</h3>
-      <input type="text" name="" id="" />
+      <h3 #time class="leading-[1.5] tracking-[0.00938em] w-[60px]">Time</h3>
+      <input #inputTime type="text" />
     </div>
     <div class="btn flex mt-[20px]">
-      <button (click)="handleHide()" class="cancel-btn">CANCEL</button>
+      <button #btnCancel (click)="handleHide()" class="cancel-btn">
+        CANCEL
+      </button>
       <button
+        #btnSub
         type="submit"
         class="bg-[#0d6efd] text-[#fff] py-[6px] px-[16px] rounded-[4px] hover:bg-[#4688eb] active:bg-[#2677f0]"
       >
