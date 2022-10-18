@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { faAnglesUp } from '@fortawesome/free-solid-svg-icons';
 import { ItemsTable } from '../../model/table.interface';
 
@@ -7,7 +14,7 @@ import { ItemsTable } from '../../model/table.interface';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnChanges {
   faAnglesUp = faAnglesUp;
   @Input() newItems: ItemsTable[] | undefined;
 
@@ -28,4 +35,5 @@ export class TableComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+  ngOnChanges(): void {}
 }

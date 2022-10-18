@@ -7,7 +7,7 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalComponent } from './core/components/modal/modal.component';
 import { ConfirmComponent } from './core/components/confirm/confirm.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FocusInputDirective } from './core/directives/focus-input.directive';
 import { HomeComponent } from './page/home/home.component';
 
@@ -21,7 +21,7 @@ import { HomeComponent } from './page/home/home.component';
     ConfirmComponent,
     FocusInputDirective,
   ],
-  imports: [BrowserModule, FormsModule, FontAwesomeModule],
+  imports: [BrowserModule, FormsModule, FontAwesomeModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -11,6 +11,10 @@ export class HomeComponent implements OnInit, OnChanges {
   constructor() {}
   newItems: ItemsTable[] = items;
   idItem: number | undefined;
+  isShowModal: boolean = false;
+  isHidden: boolean = false;
+  isShowConfirm: boolean = false;
+  isHiddenConfirm: boolean = false;
   valueSearch: string = '';
   clickOut: HTMLDivElement | undefined;
 
@@ -26,20 +30,20 @@ export class HomeComponent implements OnInit, OnChanges {
       item.song.toLowerCase().includes(this.valueSearch.toLowerCase())
     );
   }
+  // handle outsite
   handleGetElementOut($event: HTMLDivElement) {
     this.clickOut = $event;
   }
+  handleAdd($event: ItemsTable) {
+    this.newItems = [$event, ...this.newItems];
+  }
 
-  isShowModal: boolean = false;
-  isHidden: boolean = false;
   checkShowed($event: boolean) {
     this.isShowModal = $event;
   }
   checkHidden($event: boolean) {
     this.isHidden = $event;
   }
-  isShowConfirm: boolean = false;
-  isHiddenConfirm: boolean = false;
   checkConfirm($event: boolean) {
     this.isShowConfirm = $event;
   }

@@ -3,25 +3,136 @@
     isHidden ? 'out' : ''
   }} modal-box absolute w-full h-screen top-0 z-[2]"
 >
-  <div
+  <form
     class="modal max-w-[500px] bg-white px-[28px] pt-[28px] pb-[20px] rounded-[8px]"
     #boxModal
+    [formGroup]="validForm"
   >
-    <div class="flex items-center mb-[8px]">
-      <h3 #song class="leading-[1.5] tracking-[0.00938em] w-[60px]">Song</h3>
-      <input #inputRef type="text" />
+    <div class="flex flex-col mb-[8px]">
+      <div class="flex items-center">
+        <h3 #song class="leading-[1.5] tracking-[0.00938em] w-[60px]">Song</h3>
+        <div
+          class="{{
+            getValueInput.song.errors &&
+            getValueInput.song.invalid &&
+            getValueInput.song.dirty
+              ? 'danger'
+              : ''
+          }} input"
+        >
+          <input
+            #inputRef
+            [(ngModel)]="songValue"
+            type="text"
+            formControlName="song"
+          />
+        </div>
+      </div>
+      <div
+        *ngIf="
+          getValueInput.song.errors &&
+          getValueInput.song.invalid &&
+          getValueInput.song.dirty
+        "
+        class="ml-[60px] mt-[4px]"
+      >
+        <p class="text-[12px] text-[#dc3545]">Invalid !</p>
+      </div>
     </div>
-    <div class="flex items-center mb-[8px]">
-      <h3 #album class="leading-[1.5] tracking-[0.00938em] w-[60px]">Album</h3>
-      <input #inputAlbum type="text" />
+    <div class="flex flex-col mb-[8px]">
+      <div class="flex items-center">
+        <h3 #album class="leading-[1.5] tracking-[0.00938em] w-[60px]">
+          Album
+        </h3>
+        <div
+          class="{{
+            getValueInput.album.errors &&
+            getValueInput.album.invalid &&
+            getValueInput.album.dirty
+              ? 'danger'
+              : ''
+          }} input"
+        >
+          <input
+            #inputAlbum
+            [(ngModel)]="albumValue"
+            type="text"
+            formControlName="album"
+          />
+        </div>
+      </div>
+      <div
+        *ngIf="
+          getValueInput.album.errors &&
+          getValueInput.album.invalid &&
+          getValueInput.album.dirty
+        "
+        class="ml-[60px] mt-[4px]"
+      >
+        <p class="text-[12px] text-[#dc3545]">Invalid !</p>
+      </div>
     </div>
-    <div class="flex items-center mb-[8px]">
-      <h3 #date class="leading-[1.5] tracking-[0.00938em] w-[60px]">Date</h3>
-      <input #inputDate type="date" />
+    <div class="flex flex-col mb-[8px]">
+      <div class="flex items-center">
+        <h3 #date class="leading-[1.5] tracking-[0.00938em] w-[60px]">Date</h3>
+        <div
+          class="{{
+            getValueInput.date.errors &&
+            getValueInput.date.invalid &&
+            getValueInput.date.dirty
+              ? 'danger'
+              : ''
+          }} input"
+        >
+          <input
+            #inputDate
+            [(ngModel)]="dateValue"
+            type="date"
+            formControlName="date"
+          />
+        </div>
+      </div>
+      <div
+        *ngIf="
+          getValueInput.date.errors &&
+          getValueInput.date.invalid &&
+          getValueInput.date.dirty
+        "
+        class="ml-[60px] mt-[4px]"
+      >
+        <p class="text-[12px] text-[#dc3545]">Invalid !</p>
+      </div>
     </div>
-    <div class="flex items-center mb-[8px]">
-      <h3 #time class="leading-[1.5] tracking-[0.00938em] w-[60px]">Time</h3>
-      <input #inputTime type="text" />
+    <div class="flex flex-col mb-[8px]">
+      <div class="flex items-center">
+        <h3 #time class="leading-[1.5] tracking-[0.00938em] w-[60px]">Time</h3>
+        <div
+          class="{{
+            getValueInput.time.errors &&
+            getValueInput.time.invalid &&
+            getValueInput.time.dirty
+              ? 'danger'
+              : ''
+          }} input"
+        >
+          <input
+            #inputTime
+            [(ngModel)]="timeValue"
+            type="text"
+            formControlName="time"
+          />
+        </div>
+      </div>
+      <div
+        *ngIf="
+          getValueInput.time.errors &&
+          getValueInput.time.invalid &&
+          getValueInput.time.dirty
+        "
+        class="ml-[60px] mt-[4px]"
+      >
+        <p class="text-[12px] text-[#dc3545]">Invalid !</p>
+      </div>
     </div>
     <div class="btn flex mt-[20px]">
       <button #btnCancel (click)="handleHide()" class="cancel-btn">
@@ -30,10 +141,11 @@
       <button
         #btnSub
         type="submit"
+        (click)="handleAdd(); handleHide()"
         class="bg-[#0d6efd] text-[#fff] py-[6px] px-[16px] rounded-[4px] hover:bg-[#4688eb] active:bg-[#2677f0]"
       >
         ADD
       </button>
     </div>
-  </div>
+  </form>
 </div>

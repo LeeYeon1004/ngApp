@@ -2,6 +2,6 @@ export interface ItemsTable {
   id: number;
   song: string;
   album: string;
-  date: string;
+  date: Date;
   time: string;
 }
