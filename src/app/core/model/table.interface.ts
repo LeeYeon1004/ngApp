@@ -1,7 +1,7 @@
 export interface ItemsTable {
   id: number;
-  song: string;
-  album: string;
+  song: string | undefined;
+  album: string | undefined;
   date: Date;
-  time: string;
+  time: string | undefined;
 }

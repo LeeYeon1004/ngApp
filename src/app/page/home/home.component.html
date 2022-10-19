@@ -8,6 +8,7 @@
         (checkHidden)="checkHidden($event)"
         (sendValue)="handleGetValue($event)"
         (clickOut)="handleGetElementOut($event)"
+        (setEdit)="setEdit($event)"
       ></HeaderComponent>
     </div>
     <div *ngIf="isShowModal">
@@ -18,6 +19,8 @@
         (checkHidden)="checkHidden($event)"
         [clickOut]="clickOut"
         (addData)="handleAdd($event)"
+        [setEditBtn]="setEditBtn"
+        [editItem]="editItem"
       ></ModalComponent>
     </div>
     <div>
@@ -38,6 +41,11 @@
         (checkHiddenConfirm)="checkHiddenConfirm($event)"
         [newItems]="newItems"
         (sendId)="handleGetId($event)"
+        (setEdit)="setEdit($event)"
+        [isShowModal]="isShowModal"
+        [isHidden]="isHidden"
+        (checkShow)="checkShowed($event)"
+        (checkHidden)="checkHidden($event)"
       ></TableComponent>
     </div>
   </div>

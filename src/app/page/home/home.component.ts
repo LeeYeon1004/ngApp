@@ -15,29 +15,35 @@ export class HomeComponent implements OnInit, OnChanges {
   isHidden: boolean = false;
   isShowConfirm: boolean = false;
   isHiddenConfirm: boolean = false;
-  valueSearch: string = '';
   clickOut: HTMLDivElement | undefined;
+  setEditBtn: boolean = false;
+  editItem: ItemsTable | undefined;
 
   handleGetId($event: number) {
     this.idItem = $event;
+    this.editItem = this.newItems[this.idItem - 1];
   }
   handleGetData($event: ItemsTable[]) {
     this.newItems = $event;
   }
   handleGetValue($event: string) {
-    this.valueSearch = $event;
-    this.newItems = this.newItems.filter((item) =>
-      item.song.toLowerCase().includes(this.valueSearch.toLowerCase())
-    );
+    // SEARCH
+    if ($event === '') {
+      this.newItems;
+    } else {
+      this.newItems = this.newItems.filter((item) =>
+        item.song?.toLowerCase().includes($event.toLowerCase())
+      );
+    }
   }
   // handle outsite
   handleGetElementOut($event: HTMLDivElement) {
     this.clickOut = $event;
-  }
+  } // -------
   handleAdd($event: ItemsTable) {
     this.newItems = [$event, ...this.newItems];
+    console.log($event);
   }
-
   checkShowed($event: boolean) {
     this.isShowModal = $event;
   }
@@ -49,6 +55,9 @@ export class HomeComponent implements OnInit, OnChanges {
   }
   checkHiddenConfirm($event: boolean) {
     this.isHiddenConfirm = $event;
+  }
+  setEdit($event: boolean) {
+    this.setEditBtn = $event;
   }
   ngOnChanges(changes: SimpleChanges): void {}
   ngOnInit(): void {}

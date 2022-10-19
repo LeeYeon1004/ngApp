@@ -1,18 +1,25 @@
 # AngularExample
 
-1. khi tạo project những file nào có thể xóa.
-2. focus modal lần 2 active.
-3. component mounted và unmounted.
-4. modal outsite.
-5. dependency injection.
-6. contructor --> khi nào dùng ?
-7. provider[{
-   provide: ...
-   useExisting: ...
-   useClass: ...
-   useValue: ...
-   useFactory: ...
-   deps: ...
-   }]
-8. directive.
-9. content child/children
+- khi tạo project những file nào có thể xóa.
+- focus modal lần 2 active.
+- component mounted và unmounted.
+- dependency injection.
+- contructor --> khi nào dùng ?
+- provider[{
+  provide: ...
+  useExisting: ...
+  useClass: ...
+  useValue: ...
+  useFactory: ...
+  deps: ...
+  }]
+  directive.
+
+- content child/children
+
+# Lỗi chưa làm đc
+
+- modal outsite
+- validation
+- onChange input
+- when component unmounted not animation

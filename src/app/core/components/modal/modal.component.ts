@@ -28,6 +28,8 @@ export class ModalComponent implements OnInit, OnChanges {
   @Input() isShowModal: boolean = false;
   @Input() isHidden: boolean = false;
   @Input() clickOut: any;
+  @Input() setEditBtn: boolean = false;
+  @Input() editItem: ItemsTable | undefined;
 
   @Output() checkShow = new EventEmitter<boolean>();
   @Output() checkHidden = new EventEmitter<boolean>();
@@ -46,17 +48,6 @@ export class ModalComponent implements OnInit, OnChanges {
     | ElementRef<HTMLInputElement>
     | undefined;
 
-  songValue: string = '';
-  albumValue: string = '';
-  dateValue: Date = new Date();
-  timeValue: string = '';
-  objectData: ItemsTable = {
-    id: Math.random(),
-    song: this.songValue,
-    album: this.albumValue,
-    date: this.dateValue,
-    time: this.timeValue,
-  };
   // validation
   validForm = this.form.group({
     song: ['', [Validators.required]],
@@ -73,16 +64,36 @@ export class ModalComponent implements OnInit, OnChanges {
     this.isHidden = true;
     this.checkHidden.emit(this.isHidden);
   }
+  songValue: string | undefined = '';
+  albumValue: string | undefined = '';
+  dateValue: Date = new Date();
+  timeValue: string | undefined = '';
   handleAdd() {
     if (this.validForm.valid) {
-      this.addData.emit(this.objectData);
+      const item: ItemsTable = {
+        id: Math.random(),
+        song: this.songValue,
+        album: this.albumValue,
+        date: this.dateValue,
+        time: this.timeValue,
+      };
+      this.addData.emit(item);
     }
+    this.handleHide();
+  }
+  handleKey(event: Event) {
+    this.handleAdd();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.isShowModal);
+    // console.log(this.isShowModal);
     if (this.isShowModal == true) {
       this.inputRef?.nativeElement.focus();
+    }
+    if (this.isShowModal === true && this.setEditBtn === true) {
+      this.songValue = this.editItem?.song;
+      this.albumValue = this.editItem?.album;
+      this.timeValue = this.editItem?.time;
     }
   }
   ngOnInit() {}

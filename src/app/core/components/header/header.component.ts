@@ -28,15 +28,16 @@ export class HeaderComponent implements OnInit, OnChanges {
   @Output() checkHidden = new EventEmitter<boolean>();
   @Output() sendValue = new EventEmitter<string>();
   @Output() clickOut = new EventEmitter<HTMLDivElement>();
+  @Output() setEdit = new EventEmitter<boolean>();
 
-  @ViewChild('showModal', { static: true })
-  showModal: any;
+  @ViewChild('showModal', { static: true }) showModal: any;
   handleShow() {
     this.isShowModal = true;
     this.checkShow.emit(this.isShowModal);
     this.isHidden = false;
     this.checkHidden.emit(this.isHidden);
     this.clickOut.emit(this.showModal);
+    this.setEdit.emit(false);
   }
   handleSendvalue() {
     this.sendValue.emit(this.value);
