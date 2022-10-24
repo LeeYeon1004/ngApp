@@ -21,5 +21,4 @@
 
 - modal outsite
 - validation
-- onChange input
 - when component unmounted not animation

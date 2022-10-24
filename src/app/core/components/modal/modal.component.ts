@@ -19,12 +19,6 @@ import { ItemsTable } from '../../model/table.interface';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit, OnChanges {
-  constructor(
-    private el: ElementRef,
-    private clickOutsite: Renderer2,
-    private form: FormBuilder
-  ) {}
-
   @Input() isShowModal: boolean = false;
   @Input() isHidden: boolean = false;
   @Input() clickOut: any;
@@ -34,6 +28,12 @@ export class ModalComponent implements OnInit, OnChanges {
   @Output() checkShow = new EventEmitter<boolean>();
   @Output() checkHidden = new EventEmitter<boolean>();
   @Output() addData = new EventEmitter<ItemsTable>();
+
+  constructor(
+    private el: ElementRef,
+    private clickOutsite: Renderer2,
+    private form: FormBuilder
+  ) {}
 
   @ViewChild('boxModal') boxModal?: ElementRef;
   @ViewChild('album') album?: ElementRef;
@@ -78,8 +78,10 @@ export class ModalComponent implements OnInit, OnChanges {
         time: this.timeValue,
       };
       this.addData.emit(item);
+      this.handleHide();
+    } else {
+      console.log(document.getElementsByClassName('input'));
     }
-    this.handleHide();
   }
   handleKey(event: Event) {
     this.handleAdd();

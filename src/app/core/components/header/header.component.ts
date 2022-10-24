@@ -18,8 +18,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent implements OnInit, OnChanges {
   faMagnifyingGlass = faMagnifyingGlass;
-  constructor() {}
-  value: string = '';
+  value: string;
 
   @Input() isShowModal: boolean | undefined;
   @Input() isHidden: boolean | undefined;
@@ -31,6 +30,14 @@ export class HeaderComponent implements OnInit, OnChanges {
   @Output() setEdit = new EventEmitter<boolean>();
 
   @ViewChild('showModal', { static: true }) showModal: any;
+  constructor() {
+    this.value = '';
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {}
+
+  ngOnInit(): void {}
+
   handleShow() {
     this.isShowModal = true;
     this.checkShow.emit(this.isShowModal);
@@ -39,13 +46,12 @@ export class HeaderComponent implements OnInit, OnChanges {
     this.clickOut.emit(this.showModal);
     this.setEdit.emit(false);
   }
+
   handleSendvalue() {
     this.sendValue.emit(this.value);
   }
   handleKey(event: Event) {
     this.handleSendvalue();
   }
-  ngOnInit(): void {}
-  ngOnChanges(changes: SimpleChanges): void {}
   ngAfterViewInit() {}
 }

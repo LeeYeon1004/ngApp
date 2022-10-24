@@ -13,10 +13,21 @@
     border: 1px solid #0b5ed7;
   }
 }
-.search button {
-  border-left: none;
-  background-color: transparent;
-}
 button {
   transition: background-color 0.1s linear;
+}
+.search {
+  .search-btn {
+    border-left: none;
+    background-color: transparent;
+    &:hover {
+      background-color: rgb(233, 227, 227);
+      color: #aaa;
+    }
+  }
+}
+.separate {
+  background-color: #ccc;
+  width: 1px;
+  height: 24px;
 }

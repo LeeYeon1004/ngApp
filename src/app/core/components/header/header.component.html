@@ -11,14 +11,16 @@
   <div class="search w-[360px] flex items-center relative">
     <input
       [(ngModel)]="value"
+      (ngModelChange)="handleSendvalue()"
       (keydown.enter)="handleKey($event)"
       class="w-full pr-[40px]"
       type="text"
       placeholder="Enter......."
     />
+    <span class="separate"></span>
     <button
       (click)="handleSendvalue()"
-      class="text-[#dadada] rounded-r-[92px] py-[8.5px] px-[12px]"
+      class="search-btn text-[#dadada] rounded-r-[92px] py-[8.5px] px-[12px]"
     >
       <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
     </button>

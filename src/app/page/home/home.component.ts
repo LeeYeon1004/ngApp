@@ -28,13 +28,9 @@ export class HomeComponent implements OnInit, OnChanges {
   }
   handleGetValue($event: string) {
     // SEARCH
-    if ($event === '') {
-      this.newItems;
-    } else {
-      this.newItems = this.newItems.filter((item) =>
-        item.song?.toLowerCase().includes($event.toLowerCase())
-      );
-    }
+    this.newItems = items.filter((item) =>
+      item.song?.toLowerCase().includes($event.toLowerCase())
+    );
   }
   // handle outsite
   handleGetElementOut($event: HTMLDivElement) {
