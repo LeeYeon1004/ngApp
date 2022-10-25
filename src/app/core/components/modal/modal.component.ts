@@ -47,7 +47,6 @@ export class ModalComponent implements OnInit, OnChanges {
   @ViewChild('inputRef', { static: true }) inputRef:
     | ElementRef<HTMLInputElement>
     | undefined;
-
   // validation
   validForm = this.form.group({
     song: ['', [Validators.required]],
@@ -97,6 +96,7 @@ export class ModalComponent implements OnInit, OnChanges {
       this.albumValue = this.editItem?.album;
       this.timeValue = this.editItem?.time;
     }
+    console.log('mounted');
   }
   ngOnInit() {}
   // ngAfterViewInit() {

@@ -1,4 +1,4 @@
-import { FocusInputDirective } from './focus-input.directive';
+import { FocusInputDirective } from './modal.directive';
 
 describe('FocusInputDirective', () => {
   it('should create an instance', () => {

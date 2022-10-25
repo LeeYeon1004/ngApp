@@ -13,9 +13,7 @@
   useFactory: ...
   deps: ...
   }]
-  directive.
-
-- content child/children
+- @viewchild/@contentchild --> k hiểu
 
 # Lỗi chưa làm đc
 

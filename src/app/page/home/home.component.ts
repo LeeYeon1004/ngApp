@@ -8,7 +8,6 @@ import { ItemsTable } from '../../core/model/table.interface';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnChanges {
-  constructor() {}
   newItems: ItemsTable[] = items;
   idItem: number | undefined;
   isShowModal: boolean = false;
@@ -18,6 +17,11 @@ export class HomeComponent implements OnInit, OnChanges {
   clickOut: HTMLDivElement | undefined;
   setEditBtn: boolean = false;
   editItem: ItemsTable | undefined;
+
+  constructor() {}
+
+  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnInit(): void {}
 
   handleGetId($event: number) {
     this.idItem = $event;
@@ -55,6 +59,4 @@ export class HomeComponent implements OnInit, OnChanges {
   setEdit($event: boolean) {
     this.setEditBtn = $event;
   }
-  ngOnChanges(changes: SimpleChanges): void {}
-  ngOnInit(): void {}
 }

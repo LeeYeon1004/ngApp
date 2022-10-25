@@ -29,7 +29,9 @@ export class HeaderComponent implements OnInit, OnChanges {
   @Output() clickOut = new EventEmitter<HTMLDivElement>();
   @Output() setEdit = new EventEmitter<boolean>();
 
-  @ViewChild('showModal', { static: true }) showModal: any;
+  @ViewChild('showModal', { static: true }) showModal:
+    | HTMLDivElement
+    | undefined;
   constructor() {
     this.value = '';
   }
