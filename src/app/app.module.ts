@@ -10,6 +10,7 @@ import { ConfirmComponent } from './core/components/confirm/confirm.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalDirective } from './core/directives/modal.directive';
 import { HomeComponent } from './page/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,13 @@ import { HomeComponent } from './page/home/home.component';
     ConfirmComponent,
     ModalDirective,
   ],
-  imports: [BrowserModule, FormsModule, FontAwesomeModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

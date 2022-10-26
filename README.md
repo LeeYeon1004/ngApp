@@ -1,8 +1,6 @@
 # AngularExample
 
-- khi tạo project những file nào có thể xóa.
-- focus modal lần 2 active.
-- component mounted và unmounted.
+- component mounted và unmounted --> subscribe và unsubscribe
 - dependency injection.
 - contructor --> khi nào dùng ?
 - provider[{
@@ -14,9 +12,13 @@
   deps: ...
   }]
 - @viewchild/@contentchild --> k hiểu
+- pipe custom
+
+## RxJS
 
 # Lỗi chưa làm đc
 
 - modal outsite
 - validation
 - when component unmounted not animation
+- chưa edit đc

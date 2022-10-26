@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ApiService } from 'src/app/config-api/api';
 import { items } from '../../core/config-api/table.config';
 import { ItemsTable } from '../../core/model/table.interface';
 
@@ -18,10 +19,15 @@ export class HomeComponent implements OnInit, OnChanges {
   setEditBtn: boolean = false;
   editItem: ItemsTable | undefined;
 
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
   ngOnChanges(changes: SimpleChanges): void {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.apiService.getNews().subscribe((data: any) => {
+      console.log(data);
+      this.newItems = data;
+    });
+  }
 
   handleGetId($event: number) {
     this.idItem = $event;
@@ -43,6 +49,7 @@ export class HomeComponent implements OnInit, OnChanges {
   handleAdd($event: ItemsTable) {
     this.newItems = [$event, ...this.newItems];
     console.log($event);
+    this.apiService.postItem($event).subscribe();
   }
   checkShowed($event: boolean) {
     this.isShowModal = $event;
