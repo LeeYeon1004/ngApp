@@ -3,9 +3,7 @@
     <div class="max-w-[1150px] w-full flex m-auto pt-[60px] pb-[20px]">
       <HeaderComponent
         [isShowModal]="isShowModal"
-        (checkShow)="checkShowed($event)"
-        [isHidden]="isHidden"
-        (checkHidden)="checkHidden($event)"
+        (checkShowModal)="checkShowModal($event)"
         (sendValue)="handleGetValue($event)"
         (clickOut)="handleGetElementOut($event)"
         (setEdit)="setEdit($event)"
@@ -14,38 +12,35 @@
     <div *ngIf="isShowModal">
       <ModalComponent
         [isShowModal]="isShowModal"
-        (checkShow)="checkShowed($event)"
-        [isHidden]="isHidden"
-        (checkHidden)="checkHidden($event)"
+        (checkShowModal)="checkShowModal($event)"
         [clickOut]="clickOut"
         (addData)="handleAdd($event)"
         [setEditBtn]="setEditBtn"
         [editItem]="editItem"
+        [idItemEdit]="idItem"
       ></ModalComponent>
     </div>
     <div>
       <ConfirmModal
         [isShowConfirm]="isShowConfirm"
-        (checkConfirm)="checkConfirm($event)"
+        (hideConfirm)="hideConfirm($event)"
         [isHiddenConfirm]="isHiddenConfirm"
         (checkHiddenConfirm)="checkHiddenConfirm($event)"
         [idItem]="idItem"
-        (sendData)="handleGetData($event)"
+        (sendData)="handleSetData($event)"
       ></ConfirmModal>
     </div>
     <div class="max-w-[1150px] w-full m-auto">
       <TableComponent
         [isShowConfirm]="isShowConfirm"
-        (checkConfirm)="checkConfirm($event)"
+        (hideConfirm)="hideConfirm($event)"
         [isHiddenConfirm]="isHiddenConfirm"
         (checkHiddenConfirm)="checkHiddenConfirm($event)"
         [newItems]="newItems"
         (sendId)="handleGetId($event)"
         (setEdit)="setEdit($event)"
         [isShowModal]="isShowModal"
-        [isHidden]="isHidden"
-        (checkShow)="checkShowed($event)"
-        (checkHidden)="checkHidden($event)"
+        (checkShowModal)="checkShowModal($event)"
       ></TableComponent>
     </div>
   </div>

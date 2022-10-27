@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
-import { items } from '../../config-api/table.config';
+import { ApiService } from 'src/app/config-api/http.services';
 import { ItemsTable } from '../../model/table.interface';
 
 @Component({
@@ -9,26 +9,34 @@ import { ItemsTable } from '../../model/table.interface';
   styleUrls: ['./confirm.component.scss'],
 })
 export class ConfirmComponent implements OnInit {
-  constructor() {}
-  newItems: ItemsTable[] = items;
-  @Input() idItem: number | undefined;
-
+  items!: ItemsTable[];
+  newItems!: ItemsTable[];
   faTriangleExclamation = faTriangleExclamation;
+  @Input() idItem: number | undefined;
   @Input() isShowConfirm: boolean | undefined;
   @Input() isHiddenConfirm: boolean | undefined;
-  @Output() checkConfirm = new EventEmitter<boolean>();
+  @Output() hideConfirm = new EventEmitter<boolean>();
   @Output() checkHiddenConfirm = new EventEmitter<boolean>();
   @Output() sendData = new EventEmitter<ItemsTable[]>();
 
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.apiService.getNews().subscribe((data: any) => {
+      this.items = data;
+      this.newItems = this.items;
+    });
+  }
+
   handleRemove() {
     this.newItems = this.newItems.filter((item) => item.id !== this.idItem);
+    this.apiService.deleteItem(this.idItem).subscribe();
     this.sendData.emit(this.newItems);
   }
-  handleHide() {
+  handleHideConfirm() {
     this.isShowConfirm = false;
-    this.checkConfirm.emit(this.isShowConfirm);
+    this.hideConfirm.emit(this.isShowConfirm);
     this.isHiddenConfirm = true;
     this.checkHiddenConfirm.emit(this.isHiddenConfirm);
   }
-  ngOnInit(): void {}
 }

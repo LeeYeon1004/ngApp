@@ -11,6 +11,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/config-api/http.services';
 import { ItemsTable } from '../../model/table.interface';
 
 @Component({
@@ -24,15 +25,20 @@ export class ModalComponent implements OnInit, OnChanges {
   @Input() clickOut: any;
   @Input() setEditBtn: boolean = false;
   @Input() editItem: ItemsTable | undefined;
+  @Input() idItemEdit: number | undefined;
+  songValue: string | undefined = '';
+  albumValue: string | undefined = '';
+  dateValue: Date = new Date();
+  timeValue: string | undefined = '';
 
-  @Output() checkShow = new EventEmitter<boolean>();
-  @Output() checkHidden = new EventEmitter<boolean>();
+  @Output() checkShowModal = new EventEmitter<boolean>();
   @Output() addData = new EventEmitter<ItemsTable>();
 
   constructor(
     private el: ElementRef,
     private clickOutsite: Renderer2,
-    private form: FormBuilder
+    private form: FormBuilder,
+    private apiService: ApiService
   ) {}
 
   @ViewChild('boxModal') boxModal?: ElementRef;
@@ -57,37 +63,8 @@ export class ModalComponent implements OnInit, OnChanges {
   get getValueInput() {
     return this.validForm.controls;
   }
-  handleHide() {
-    this.isShowModal = false;
-    this.checkShow.emit(this.isShowModal);
-    this.isHidden = true;
-    this.checkHidden.emit(this.isHidden);
-  }
-  songValue: string | undefined = '';
-  albumValue: string | undefined = '';
-  dateValue: Date = new Date();
-  timeValue: string | undefined = '';
-  handleAdd() {
-    if (this.validForm.valid) {
-      const item: ItemsTable = {
-        id: Math.random(),
-        song: this.songValue,
-        album: this.albumValue,
-        date: this.dateValue,
-        time: this.timeValue,
-      };
-      this.addData.emit(item);
-      this.handleHide();
-    } else {
-      console.log(document.getElementsByClassName('input'));
-    }
-  }
-  handleKey(event: Event) {
-    this.handleAdd();
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log(this.isShowModal);
     if (this.isShowModal == true) {
       this.inputRef?.nativeElement.focus();
     }
@@ -96,9 +73,9 @@ export class ModalComponent implements OnInit, OnChanges {
       this.albumValue = this.editItem?.album;
       this.timeValue = this.editItem?.time;
     }
-    console.log('mounted');
   }
   ngOnInit() {}
+
   // ngAfterViewInit() {
   //   const divElement = (<HTMLElement>this.el.nativeElement).querySelector(
   //     '.modal-box'
@@ -121,4 +98,28 @@ export class ModalComponent implements OnInit, OnChanges {
   //     }
   //   });
   // }
+
+  handleHide() {
+    this.isShowModal = false;
+    this.checkShowModal.emit(this.isShowModal);
+  }
+  handleAdd() {
+    const item: ItemsTable = {
+      id: Math.random(),
+      song: this.songValue,
+      album: this.albumValue,
+      date: this.dateValue,
+      time: this.timeValue,
+    };
+    if (this.validForm.valid && this.setEditBtn === false) {
+      this.addData.emit(item);
+      this.handleHide();
+    } else {
+      this.apiService.putItem(this.idItemEdit, item).subscribe();
+      this.handleHide();
+    }
+  }
+  handleKey(event: Event) {
+    this.handleAdd();
+  }
 }

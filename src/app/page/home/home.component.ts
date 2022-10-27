@@ -1,6 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ApiService } from 'src/app/config-api/api';
-import { items } from '../../core/config-api/table.config';
+import { ApiService } from 'src/app/config-api/http.services';
 import { ItemsTable } from '../../core/model/table.interface';
 
 @Component({
@@ -9,10 +8,10 @@ import { ItemsTable } from '../../core/model/table.interface';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnChanges {
-  newItems: ItemsTable[] = items;
+  items!: ItemsTable[];
+  newItems!: ItemsTable[];
   idItem: number | undefined;
   isShowModal: boolean = false;
-  isHidden: boolean = false;
   isShowConfirm: boolean = false;
   isHiddenConfirm: boolean = false;
   clickOut: HTMLDivElement | undefined;
@@ -24,21 +23,24 @@ export class HomeComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {}
   ngOnInit(): void {
     this.apiService.getNews().subscribe((data: any) => {
-      console.log(data);
-      this.newItems = data;
+      this.items = data;
+      this.newItems = this.items;
     });
   }
 
   handleGetId($event: number) {
     this.idItem = $event;
-    this.editItem = this.newItems[this.idItem - 1];
+    // get item edit
+    this.apiService.getItem($event).subscribe((data: any) => {
+      this.editItem = data;
+    });
   }
-  handleGetData($event: ItemsTable[]) {
+  handleSetData($event: ItemsTable[]) {
     this.newItems = $event;
   }
   handleGetValue($event: string) {
     // SEARCH
-    this.newItems = items.filter((item) =>
+    this.newItems = this.items.filter((item) =>
       item.song?.toLowerCase().includes($event.toLowerCase())
     );
   }
@@ -47,17 +49,13 @@ export class HomeComponent implements OnInit, OnChanges {
     this.clickOut = $event;
   } // -------
   handleAdd($event: ItemsTable) {
-    this.newItems = [$event, ...this.newItems];
-    console.log($event);
+    this.newItems = [...this.newItems, $event];
     this.apiService.postItem($event).subscribe();
   }
-  checkShowed($event: boolean) {
+  checkShowModal($event: boolean) {
     this.isShowModal = $event;
   }
-  checkHidden($event: boolean) {
-    this.isHidden = $event;
-  }
-  checkConfirm($event: boolean) {
+  hideConfirm($event: boolean) {
     this.isShowConfirm = $event;
   }
   checkHiddenConfirm($event: boolean) {

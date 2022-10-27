@@ -1,6 +1,5 @@
 import {
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
@@ -23,7 +22,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   @Input() isShowModal: boolean | undefined;
   @Input() isHidden: boolean | undefined;
 
-  @Output() checkShow = new EventEmitter<boolean>();
+  @Output() checkShowModal = new EventEmitter<boolean>();
   @Output() checkHidden = new EventEmitter<boolean>();
   @Output() sendValue = new EventEmitter<string>();
   @Output() clickOut = new EventEmitter<HTMLDivElement>();
@@ -42,7 +41,7 @@ export class HeaderComponent implements OnInit, OnChanges {
 
   handleShow() {
     this.isShowModal = true;
-    this.checkShow.emit(this.isShowModal);
+    this.checkShowModal.emit(this.isShowModal);
     this.isHidden = false;
     this.checkHidden.emit(this.isHidden);
     this.clickOut.emit(this.showModal);
