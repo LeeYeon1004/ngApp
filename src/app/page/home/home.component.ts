@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit, OnChanges {
   isShowModal: boolean = false;
   isShowConfirm: boolean = false;
   isHiddenConfirm: boolean = false;
-  clickOut: HTMLDivElement | undefined;
   setEditBtn: boolean = false;
   editItem: ItemsTable | undefined;
 
@@ -43,14 +42,6 @@ export class HomeComponent implements OnInit, OnChanges {
     this.newItems = this.items.filter((item) =>
       item.song?.toLowerCase().includes($event.toLowerCase())
     );
-  }
-  // handle outsite
-  handleGetElementOut($event: HTMLDivElement) {
-    this.clickOut = $event;
-  } // -------
-  handleAdd($event: ItemsTable) {
-    this.newItems = [...this.newItems, $event];
-    this.apiService.postItem($event).subscribe();
   }
   checkShowModal($event: boolean) {
     this.isShowModal = $event;

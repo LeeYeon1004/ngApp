@@ -5,7 +5,6 @@
         [isShowModal]="isShowModal"
         (checkShowModal)="checkShowModal($event)"
         (sendValue)="handleGetValue($event)"
-        (clickOut)="handleGetElementOut($event)"
         (setEdit)="setEdit($event)"
       ></HeaderComponent>
     </div>
@@ -13,8 +12,8 @@
       <ModalComponent
         [isShowModal]="isShowModal"
         (checkShowModal)="checkShowModal($event)"
-        [clickOut]="clickOut"
-        (addData)="handleAdd($event)"
+        [newItems]="newItems"
+        (sendData)="handleSetData($event)"
         [setEditBtn]="setEditBtn"
         [editItem]="editItem"
         [idItemEdit]="idItem"

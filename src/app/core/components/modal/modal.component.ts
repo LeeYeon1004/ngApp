@@ -20,19 +20,18 @@ import { ItemsTable } from '../../model/table.interface';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit, OnChanges {
+  @Input() newItems!: ItemsTable[];
   @Input() isShowModal: boolean = false;
-  @Input() isHidden: boolean = false;
-  @Input() clickOut: any;
   @Input() setEditBtn: boolean = false;
   @Input() editItem: ItemsTable | undefined;
   @Input() idItemEdit: number | undefined;
-  songValue: string | undefined = '';
-  albumValue: string | undefined = '';
+  songValue: string | undefined;
+  albumValue: string | undefined;
   dateValue: Date = new Date();
-  timeValue: string | undefined = '';
+  timeValue: string | undefined;
 
   @Output() checkShowModal = new EventEmitter<boolean>();
-  @Output() addData = new EventEmitter<ItemsTable>();
+  @Output() sendData = new EventEmitter<ItemsTable[]>();
 
   constructor(
     private el: ElementRef,
@@ -41,15 +40,15 @@ export class ModalComponent implements OnInit, OnChanges {
     private apiService: ApiService
   ) {}
 
-  @ViewChild('boxModal') boxModal?: ElementRef;
-  @ViewChild('album') album?: ElementRef;
-  @ViewChild('inputAlbum') inputAlbum?: ElementRef;
-  @ViewChild('date') date?: ElementRef;
-  @ViewChild('inputDate') inputDate?: ElementRef;
-  @ViewChild('time') time?: ElementRef;
-  @ViewChild('inputTime') inputTime?: ElementRef;
-  @ViewChild('btnCancel') btnCancel?: ElementRef;
-  @ViewChild('btnSub') btnSub?: ElementRef;
+  // @ViewChild('boxModal') boxModal?: ElementRef;
+  // @ViewChild('album') album?: ElementRef;
+  // @ViewChild('inputAlbum') inputAlbum?: ElementRef;
+  // @ViewChild('date') date?: ElementRef;
+  // @ViewChild('inputDate') inputDate?: ElementRef;
+  // @ViewChild('time') time?: ElementRef;
+  // @ViewChild('inputTime') inputTime?: ElementRef;
+  // @ViewChild('btnCancel') btnCancel?: ElementRef;
+  // @ViewChild('btnSub') btnSub?: ElementRef;
   @ViewChild('inputRef', { static: true }) inputRef:
     | ElementRef<HTMLInputElement>
     | undefined;
@@ -112,10 +111,13 @@ export class ModalComponent implements OnInit, OnChanges {
       time: this.timeValue,
     };
     if (this.validForm.valid && this.setEditBtn === false) {
-      this.addData.emit(item);
+      this.apiService.postItem(item).subscribe();
+      this.newItems = [...this.newItems, item];
+      this.sendData.emit(this.newItems);
       this.handleHide();
     } else {
       this.apiService.putItem(this.idItemEdit, item).subscribe();
+      this.sendData.emit(this.newItems);
       this.handleHide();
     }
   }
